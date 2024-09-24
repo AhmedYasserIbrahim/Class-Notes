@@ -1,6 +1,3 @@
-Here’s the content rewritten in Markdown format:
-
-```markdown
 ## Q1: Lambda Functions in Python
 
 **Question:**  
