@@ -1,4 +1,3 @@
-```markdown
 # Pandas Overview
 
 - **Pandas** is a library built on NumPy for data manipulation and analysis.
