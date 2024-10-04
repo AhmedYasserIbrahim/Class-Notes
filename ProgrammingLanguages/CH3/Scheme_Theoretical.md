@@ -50,6 +50,7 @@ Tail recursion allows a recursive function to be optimized into an iterative for
 ## 11. Applications of Lisp, APL, and Scheme
 - **Lisp**: Commonly used in AI fields, including machine learning, natural language processing (NLP), knowledge representation, and processing speech and vision.
 - **APL**: Utilized for throwaway functions, often in mathematical and data analysis applications.
+- **Scheme**: Used in teaching introduction to programming in some universities.
 
 ## 12. Comparison of Imperative and Functional Languages
 - **Imperative Languages**:
@@ -61,3 +62,13 @@ Tail recursion allows a recursive function to be optimized into an iterative for
   - Typically less efficient execution
   - Simpler semantics and syntax
   - Concurrency can be applied automatically
+
+## 13. Prolog
+- **Prolog Applications:**
+  - Natural Language Interfaces
+  - Automated Reasoning Systems
+  - Expert Systems
+
+- **Prolog Strengths and Weaknesses:**
+  - Strengths: Knowledge representation, planning and search, pattern matching, and language and grammar processing.
+  - Weaknesses: Repititive number crunching, complex data structures, and I/O interfaces.
