@@ -99,3 +99,87 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 - **Testing Set**: Used to assess model performance.
 
 This helps prevent overfitting and ensures that the model generalizes well to new data.
+
+## 8. Confusion Matrix and Classification Metrics
+
+### 8.1 Confusion Matrix
+
+The confusion matrix is a table used to evaluate the performance of a classification model by comparing the actual values with the predicted values. It consists of four types of classifications:
+
+- **True Positive (TP)**: Correctly predicted positive cases.
+- **True Negative (TN)**: Correctly predicted negative cases.
+- **False Positive (FP)**: Incorrectly predicted positive cases (Type I error).
+- **False Negative (FN)**: Incorrectly predicted negative cases (Type II error).
+
+The confusion matrix looks like this:
+
+|                     | **Predicted Positive** | **Predicted Negative** |
+|---------------------|------------------------|------------------------|
+| **Actual Positive** | True Positive (TP)     | False Negative (FN)    |
+| **Actual Negative** | False Positive (FP)    | True Negative (TN)     |
+
+### 8.2 Classification Metrics
+
+#### 8.2.1 Accuracy
+
+Accuracy measures the overall performance of the model. It is the ratio of correctly predicted observations to the total observations.
+
+\[
+\text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}
+\]
+
+- **Interpretation**: High accuracy means the model is performing well on both positive and negative classes.
+
+#### 8.2.2 Precision
+
+Precision measures the model's ability to correctly predict positive observations. It is the ratio of true positive predictions to the total predicted positive observations.
+
+\[
+\text{Precision} = \frac{TP}{TP + FP}
+\]
+
+- **Interpretation**: High precision indicates a low false positive rate.
+
+#### 8.2.3 Recall (Sensitivity)
+
+Recall, also known as sensitivity or true positive rate, measures the model's ability to find all the relevant cases within a dataset.
+
+\[
+\text{Recall} = \frac{TP}{TP + FN}
+\]
+
+- **Interpretation**: High recall indicates a low false negative rate.
+
+#### 8.2.4 F1 Score
+
+The F1 Score is the harmonic mean of precision and recall, providing a balance between the two.
+
+\[
+\text{F1 Score} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}
+\]
+
+- **Interpretation**: Useful when you need a balance between precision and recall.
+
+#### 8.2.5 Specificity
+
+Specificity measures the proportion of actual negatives that are correctly identified.
+
+\[
+\text{Specificity} = \frac{TN}{TN + FP}
+\]
+
+- **Interpretation**: High specificity indicates a low false positive rate for the negative class.
+
+### 8.3 Summary of Metrics
+
+- **Accuracy**: Overall correctness of the model.
+- **Precision**: Quality of positive predictions.
+- **Recall**: Ability to find all positive instances.
+- **F1 Score**: Balance between precision and recall.
+- **Specificity**: Correctness of negative predictions.
+
+These metrics help in understanding different aspects of model performance and are crucial for selecting the right model for your specific use case.
+
+---
+
+By understanding and utilizing these concepts, you can build effective classification models and evaluate their performance accurately.
