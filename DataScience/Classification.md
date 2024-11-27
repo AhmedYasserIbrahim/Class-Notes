@@ -142,7 +142,7 @@ Precision measures the model's ability to correctly predict positive observation
 
 #### 8.2.3 Recall (Sensitivity)
 
-Recall, also known as sensitivity or true positive rate, measures the model's ability to find all the relevant cases within a dataset.
+Recall, also known as sensitivity or true positive rate (TPR), measures the model's ability to find all the relevant positive cases within a dataset.
 
 \[
 \text{Recall} = \frac{TP}{TP + FN}
@@ -162,7 +162,7 @@ The F1 Score is the harmonic mean of precision and recall, providing a balance b
 
 #### 8.2.5 Specificity
 
-Specificity measures the proportion of actual negatives that are correctly identified.
+Specificity measures the proportion of actual negatives that are correctly identified, also known as the true negative rate (TNR).
 
 \[
 \text{Specificity} = \frac{TN}{TN + FP}
@@ -180,6 +180,56 @@ Specificity measures the proportion of actual negatives that are correctly ident
 
 These metrics help in understanding different aspects of model performance and are crucial for selecting the right model for your specific use case.
 
----
+## 9. Receiver Operating Characteristic (ROC) Curve
 
-By understanding and utilizing these concepts, you can build effective classification models and evaluate their performance accurately.
+### 9.1 Understanding the ROC Curve
+
+The Receiver Operating Characteristic (ROC) curve is a graphical representation of a classification model's performance across all classification thresholds. It plots:
+
+- **True Positive Rate (TPR)**: Also known as Recall or Sensitivity.
+
+    \[
+    \text{TPR} = \frac{TP}{TP + FN}
+    \]
+
+- **False Positive Rate (FPR)**:
+
+    \[
+    \text{FPR} = \frac{FP}{FP + TN}
+    \]
+
+By plotting TPR against FPR at various threshold settings, the ROC curve illustrates the trade-off between sensitivity and specificity.
+
+### 9.2 Interpreting the ROC Curve
+
+- **Ideal ROC Curve**: A curve that reaches the top-left corner of the plot (TPR = 1, FPR = 0) indicates a perfect classifier.
+- **Diagonal Line**: Represents a random guess (no discrimination ability).
+- **Closer to Top-Left**: The more the ROC curve bows towards the top-left corner, the better the model is at distinguishing between the classes.
+
+### 9.3 Area Under the Curve (AUC)
+
+- **AUC**: The Area Under the ROC Curve quantifies the overall ability of the model to discriminate between positive and negative classes.
+- **Interpretation**:
+
+    - **AUC = 1.0**: Perfect model.
+    - **AUC = 0.5**: Model with no discriminative ability (equivalent to random guessing).
+    - **Higher AUC**: Indicates better model performance.
+
+### 9.4 Choosing the Optimal Threshold
+
+- The ROC curve helps identify the threshold that balances TPR and FPR effectively.
+- **Best Threshold**: Often lies near the top-left corner of the ROC space, maximizing TPR while minimizing FPR.
+- **Threshold Selection Methods**:
+
+    - **Youden's Index**: Maximizes the difference between TPR and FPR.
+
+        \[
+        \text{Youden's J} = \text{TPR} - \text{FPR}
+        \]
+
+    - **Cost-Benefit Analysis**: Considers the consequences of false positives and false negatives specific to the problem domain.
+
+### 9.5 Practical Use of ROC Curves
+
+- **Model Comparison**: ROC curves allow for visual comparison of different classification models.
+- **Threshold Adjustment**: Helps in adjusting the classification threshold to meet specific requirements (e.g., prioritizing recall over precision).
