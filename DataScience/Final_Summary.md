@@ -10,13 +10,13 @@ Gradient descent is an optimization technique that is used to find the best solu
 
 **Function:**
 
-\[
-x_{new} = x_{old} - \alpha \nabla f(x_{old})
-\]
+$$
+x_{\text{new}} = x_{\text{old}} - \alpha \nabla f(x_{\text{old}})
+$$
 
-- The function modifies the parameters to make a new prediction for every iteration. \(x_{new}\) is the new value and \(x_{old}\) is the value for the iteration just done. 
+- The function modifies the parameters to make a new prediction for every iteration. \(x_{\text{new}}\) is the new value and \(x_{\text{old}}\) is the value for the iteration just done. 
 - \(\alpha\) is the learning rate that tells us the size of the step for every time. Too large could result in overshooting and missing the minimum value, causing instability as the function might never converge to the optimal solution, and too small would take too much time to optimize.
-- The function is the loss function and its derivative (gradient for multiple parameters) points to the slope, meaning how much the loss changes when we modify the predicted value. \(\nabla f(x_{old})\) is the slope of the current function at the predicted value. It points to the steepest ascent; hence the negative sign as we are aiming for the lowest slope.
+- The function is the loss function and its derivative (gradient for multiple parameters) points to the slope, meaning how much the loss changes when we modify the predicted value. \(\nabla f(x_{\text{old}})\) is the slope of the current function at the predicted value. It points to the steepest ascent; hence the negative sign as we are aiming for the lowest slope.
 
 Gradient descent is simple, easy to implement (only requires computing the gradient), and efficient as it points directly to the minimum. It provides the optimal solution in convex situations and in non-convex functions it still provides high accuracy. Used if there are no external constraints.
 
@@ -42,48 +42,43 @@ Encoding is often used when dealing with data types in classification to convert
 
 ---
 
-## 2. Logistic Functions
+2. Logistic Functions
+Logistic functions convert any value into a probability between 0 and 1, commonly used in classification tasks such as logistic regression.
 
-Logistic functions are needed to convert any value to a probability between 0 and 1 for classification using logistic regression.
+Sigmoid Function: The sigmoid function takes an input value z (often a linear combination of features and weights) and converts it to a probability between 0 and 1.
 
-- **Sigmoid Function**: A logistic function where \(z\) represents an equation consisting of a combination of input features and their weights (regression output) to convert it to a probability:
-  \[
-  \sigma(z) = \frac{1}{1 + e^{-z}}
-  \]
-  (Always between 0 and 1). The graph is an S-shape that is limited between 0 and 1.
+Sigmoid: sigma(z) = 1 / (1 + e^(-z))
 
-- **Logit Function**: The inverse of sigmoid that retrieves the value of \(z\) without the 0–1 scale.
+This function outputs values between 0 and 1 and is shaped like the letter S.
 
-- **Softmax Function**: Similar to the sigmoid function but for multi-class classification rather than binary classification.
-  \[
-  P(class \; j) = \frac{e^{z_j}}{\sum e^{z_i}}
-  \]
+Logit Function: The inverse of the sigmoid function, used to retrieve the original z value before it was converted into a 0–1 probability scale.
 
----
+Softmax Function: A generalization of the sigmoid function for multi-class classification. For class j, it outputs a probability by taking the exponential of z_j and dividing it by the sum of exponentials of all z_i values.
 
-## 3. Activation Functions
+Softmax for class j: P(class j) = e^(z_j) / (Σ e^(z_i))
 
-Every neuron calculates a value for \(z\) then an activation function is applied to transform \(z\) into another shape based on the function before \(z\) is passed on to the next neuron. Activation functions are necessary because if \(z\) is passed completely then the network basically acts as a linear function, making it impossible to handle complex tasks like image processing. The outputs from the previous neurons are directly used to calculate \(z\) in the current neuron.
+This ensures that the probabilities of all classes sum up to 1.
 
-### Types of Activation Functions:
+3. Activation Functions
+Activation functions introduce non-linearity into a neural network, allowing it to learn complex patterns. Without activation functions, a neural network would behave like a linear model, limiting its ability to capture complex relationships in data.
 
-- **ReLU (Rectified Linear Unit)**:
-  \[
-  ReLU(z) = \max(0, z)
-  \]
-  - Sets any negative values (features deemed as unimportant so they do not contribute to the model prediction) to zero and keeps the positive values as they are. It is simple and efficient. However, the "dead neuron problem" occurs if the \(z\) value is always negative, making it impossible for the network to learn.
+Types of Activation Functions
+ReLU (Rectified Linear Unit):
 
-- **Tanh (Hyperbolic Tangent)**:
-  \[
-  \text{tanh}(z) = \frac{e^z - e^{-z}}{e^z + e^{-z}}
-  \]
-  - Converts the \(z\) value into a value between \(-1\) and \(1\). Smaller values result in numbers closer to 0. Better than ReLU for balanced data but suffers from the vanishing gradient problem for very large or small \(z\).
+ReLU(z) = max(0, z)
 
-- **Leaky ReLU**:
-  \[
-  \text{Leaky ReLU}(z) = \begin{cases} z, & z \geq 0 \\ \alpha z, & z < 0 \end{cases}
-  \]
-  - For negative values, it outputs a small portion of that negative value instead of 0 to prevent neglecting them entirely. Solves the dead neuron problem.
+This function sets negative values to 0 and keeps positive values as they are. However, it can cause the "dead neuron problem" if neurons consistently produce negative values.
+
+Tanh (Hyperbolic Tangent):
+
+tanh(z) = (e^z - e^(-z)) / (e^z + e^(-z))
+
+Output is between -1 and 1. This function can handle balanced data more effectively than ReLU, but it still suffers from the vanishing gradient problem if z becomes very large or very small.
+
+Leaky ReLU:
+
+Leaky ReLU(z) = z if z ≥ 0, or α*z if z < 0 (where α is a small positive constant, like 0.01)
+This variation of ReLU allows a small gradient to flow for negative values of z, preventing neurons from dying out completely.
 
 ---
 
@@ -109,9 +104,9 @@ Convex optimization helps:
 
 MSE is a loss function that evaluates the accuracy of the model based on the difference between the actual and predicted values. The formula is the average of the summation of squared the difference between the expected and actual value for every point. Squaring ensures all values are positive and it penalizes larger errors more than smaller ones.
 
-\[
+$$
 L(\theta) = \frac{1}{n} \sum (y_i - \hat{y}_i)^2
-\]
+$$
 
 - \(L\) is the loss function (MSE in this case) and \(\theta\) is the set of predicted parameters or weights that we evaluate their accuracy in the regression analysis to evaluate the model.
 
@@ -131,15 +126,16 @@ Underfitting means that the model is too simple, so it does not capture the unde
 
 The goal is to find a good balance tradeoff between bias and variance to achieve an accurate model that generalizes well to unseen data.
 
-\[
+$$
 \text{Total Error} = \text{Bias}^2 + \text{Variance} + \text{Irreducible Error}
-\]
+$$
 
 Irreducible error is the inherent noise in the data that results from measurement errors or unpredictable factors. It cannot be removed regardless of how the model is designed.
 
 A training curve can be graphed to plot the size of the training dataset versus the error percentage. If both the training and validation errors are high and do not decrease significantly as the training dataset size increases, it means that there is underfitting (high bias). If the training error is low but validation error is high then there is overfitting (high variance). The goal is to find the optimal tradeoff point with the best training and testing errors.
 
 ---
+
 ## 7. Regularization
 
 Regularization is a technique that is used to add a penalty to the loss function to prevent overfitting. This penalty prevents the model from having high coefficients, which means relying too much on the complex patterns and noise in the data. Regularization has many types:
@@ -150,9 +146,9 @@ Regularization is a technique that is used to add a penalty to the loss function
 
 **c. Elastic Net:** Combines the advantages of both regularization models by adding the L1 and L2 penalty together. L1 creates a sparse model that does feature selection. L2 creates a simpler and more robust model that retains all features.
 
-\[
+$$
 \text{Penalty} = \lambda \sum |w_i| + \lambda \sum (w_i)^2
-\]
+$$
 
 \(\lambda\) is the strength of the penalty.
 
@@ -180,13 +176,15 @@ Model selection means choosing the best way to build a model for a specific task
 
 ---
 
+---
+
 ## 10. Linear Regression
 
 Linear regression is a statistical model that is used to predict a value of a target dependent variable based on a combination of the feature independent variables by finding the best fit linear equation.
 
-\[
+$$
 y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \dots + \epsilon
-\]
+$$
 
 - **y** is the target variable.
 - **x** are the features.
@@ -194,7 +192,8 @@ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \dots + \epsilon
 - **\(\beta_0\)** is the intercept that represents the value of y when all features are 0. It is the baseline for the prediction without predictors.
 - **\(\epsilon\)** is the error term that accounts for variability in y that cannot be explained using a linear model. It measures the difference between the predicted and actual values for y. It has a mean of 0 and a constant variance meaning that the error is random and consistent. Training reduces the value of \(\epsilon\) but it will never be zero.
 
-**Assumptions when using a linear regression model:**
+### Assumptions when using a linear regression model:
+
 1. **Linearity:** There is a linear relationship between the features and the target variable.
 2. **Independence:** One observation of a feature should not affect another observation.
 3. **Homoscedasticity:** The error term \(\epsilon\) is roughly the same regardless of the independent variables.
@@ -208,29 +207,29 @@ The method of least squares is a way to compute the best weights for a linear re
 
 Ordinary Least Squares (OLS) regression report involves analyzing statistics to evaluate the efficacy and relevance of the regression model. Common metrics for evaluation include:
 
-**a. MSE:** Mean Squared Error, measures the average of the squared differences between predicted and actual values.
+- **MSE:** Mean Squared Error, measures the average of the squared differences between predicted and actual values.
 
-**b. RMSE:** Root Mean Squared Error, the square root of the MSE to provide the error in the same measurement as that of the dependent variable for easier interpretation.
+- **RMSE:** Root Mean Squared Error, the square root of the MSE to provide the error in the same measurement as that of the dependent variable for easier interpretation.
 
-**c. Coefficients:** Intercept and weights in the equation for linear regression.
+- **Coefficients:** Intercept and weights in the equation for linear regression.
 
-**d. Standard Errors:** Indicate the accuracy of the coefficient values (should be minimized).
+- **Standard Errors:** Indicate the accuracy of the coefficient values (should be minimized).
 
-**e. T statistics:** Ratio of the coefficient over its standard error. Shows if the predictor has a meaningful and significant effect on y or not (is it significantly different from 0).
+- **T statistics:** Ratio of the coefficient over its standard error. Shows if the predictor has a meaningful and significant effect on y or not (is it significantly different from 0).
 
-**f. P value:** Tests the significance of each coefficient. P value < 0.05 means the predictor is significant.
+- **P value:** Tests the significance of each coefficient. P value < 0.05 means the predictor is significant.
 
-**g. R squared:** Amount of variance in y explained by the independent variables. Closer value to 1 means better model fit and smaller error term value.
+- **R squared:** Amount of variance in y explained by the independent variables. Closer value to 1 means better model fit and smaller error term value.
 
-**h. Adjusted R squared:** R squared but adjusted to the number of predictors. Penalizes having irrelevant predictors.
+- **Adjusted R squared:** R squared but adjusted to the number of predictors. Penalizes having irrelevant predictors.
 
-**i. F statistic:** Tests the overall significance of the model. Checks if at least one predictor significantly affects y.
+- **F statistic:** Tests the overall significance of the model. Checks if at least one predictor significantly affects y.
 
-**j. Durbin Watson Statistic:** Measures the autocorrelation or relationship between errors. Close to 2 means the errors are independent. Otherwise, the model would be missing patterns.
+- **Durbin Watson Statistic:** Measures the autocorrelation or relationship between errors. Close to 2 means the errors are independent. Otherwise, the model would be missing patterns.
 
-**k. AIC and BIC:** Metrics for comparing models. Lower value indicates a better model fit based on performance and complexity.
+- **AIC and BIC:** Metrics for comparing models. Lower value indicates a better model fit based on performance and complexity.
 
-R squared is used to measure how well the variance in y is explained by the dependent variables or basically how well the dependent variables can predict the value for y. Closer to 1 means that the model predicts the value of y well. Standard Error of Regression (SER) is basically the sum of errors or distances from the regression line. SER should be minimized for better models. Together, R squared and SER can measure how well the model fits the data. Residual analysis refers to analyzing the differences between actual and predicted values. Residual analysis is needed to check the assumptions made by linear model and verify them.
+**R squared** is used to measure how well the variance in y is explained by the dependent variables or basically how well the dependent variables can predict the value for y. Closer to 1 means that the model predicts the value of y well. Standard Error of Regression (SER) is basically the sum of errors or distances from the regression line. SER should be minimized for better models. Together, R squared and SER can measure how well the model fits the data. Residual analysis refers to analyzing the differences between actual and predicted values. Residual analysis is needed to check the assumptions made by linear model and verify them.
 
 ---
 
@@ -249,21 +248,31 @@ A confusion matrix is used to evaluate the performance of a classification model
 
 By having the confusion matrix, we can generate the classification report to evaluate the accuracy of the classification model using the following metrics:
 
-- **Accuracy:** The ratio of correctly predicted values/total values \(\frac{TP + TN}{TP + TN + FP + FN}\). Indicates how well the model performs.
+- **Accuracy:** The ratio of correctly predicted values/total values: 
+  $$
+  \frac{TP + TN}{TP + TN + FP + FN}
+  $$
 
-- **Precision:** Ratio of correctly predicted positives over total positive predictions: \(\frac{TP}{TP + FP}\). How much of the positive predictions were actually correct?
+- **Precision:** Ratio of correctly predicted positives over total positive predictions: 
+  $$
+  \frac{TP}{TP + FP}
+  $$
 
-- **Recall:** Ratio of correctly predicted positives over all actual positives: \(\frac{TP}{TP + FN}\). How much of the actual positive values were correctly classified? Also known as sensitivity.
+- **Recall:** Ratio of correctly predicted positives over all actual positives: 
+  $$
+  \frac{TP}{TP + FN}
+  $$
+  Also known as sensitivity.
 
 - **F1 Score:** The harmonic mean of precision and recall that takes into account both FP and FN. It deals with the problem of imbalance where one class occurs more than the other.
 
-\[
+$$
 F1 = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}
-\]
+$$
 
-- **Support:** The number of the actual appearances of a class in a dataset regardless of its classification. \(TP + FN\).
+- **Support:** The number of the actual appearances of a class in a dataset regardless of its classification: \(TP + FN\).
 
-Analyzing the confusion matrix helps us understand the type of misclassifications that the model does, FP or FN. **FP** means model is too lenient so it accepts more positives than it should and needs better precision. **FN** means the model is too strict and it needs better recall because it misses some positive values.
+Analyzing the confusion matrix helps us understand the type of misclassifications that the model does, FP or FN. **FP** means the model is too lenient so it accepts more positives than it should and needs better precision. **FN** means the model is too strict and it needs better recall because it misses some positive values.
 
 The use case matters such as whether the classification is used in the medical field (should be strict) or in spam filtering (more comprehensive).
 
@@ -279,9 +288,9 @@ Logistic regression is used in classification to find the probability that a poi
 
 The loss function used in logistic regression to evaluate the model is:
 
-\[
+$$
 L(y, \hat{y}) = -[y \log(\hat{y}) + (1-y) \log(1-\hat{y})]
-\]
+$$
 
 **Gradient descent** is also used to optimize the weights and coefficients through iterations to find the best model.
 
@@ -293,4 +302,3 @@ Logistic regression also uses accuracy, precision, recall, F1, and ROC-AUC for e
 
 **Use cases:** Medicine (predict diseases), finance (detect fraud), cybersecurity (spam detection).
 
-To improve the performance, we use regularization, cross-validation, and feature engineering using polynomial features for non-linear relationships.
