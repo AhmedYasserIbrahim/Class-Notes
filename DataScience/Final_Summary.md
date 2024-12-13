@@ -55,9 +55,7 @@ Logistic functions are essential to convert any value into a probability between
 - **Logit Function**: The inverse of the sigmoid function. It retrieves the value of \(z\) without limiting it to a 0–1 scale.
 
 - **Softmax Function**: Extends the sigmoid function for multi-class classification instead of binary classification. For a given class \(j\), the softmax function calculates:
-  \[
-  P(\text{class } j) = \frac{e^{z_j}}{\sum e^{z_i}}
-  \]
+  P(j) = e^zj / Summation e^zi
   This ensures that the sum of probabilities across all classes is equal to 1.
 
 ---
