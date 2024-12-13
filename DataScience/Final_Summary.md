@@ -42,44 +42,55 @@ Encoding is often used when dealing with data types in classification to convert
 
 ---
 
-2. Logistic Functions
-Logistic functions convert any value into a probability between 0 and 1, commonly used in classification tasks such as logistic regression.
+## 2. Logistic Functions
 
-Sigmoid Function: The sigmoid function takes an input value z (often a linear combination of features and weights) and converts it to a probability between 0 and 1.
+Logistic functions are essential to convert any value into a probability between 0 and 1 for classification tasks, as used in logistic regression.
 
-Sigmoid: sigma(z) = 1 / (1 + e^(-z))
+- **Sigmoid Function**: A logistic function where \(z\) represents an equation consisting of a combination of input features and their weights (regression output) to convert it to a probability:
+  \[
+  \sigma(z) = \frac{1}{1 + e^{-z}}
+  \]
+  This function always outputs a value between 0 and 1. The graph of the sigmoid function is S-shaped, making it suitable for binary classification.
 
-This function outputs values between 0 and 1 and is shaped like the letter S.
+- **Logit Function**: The inverse of the sigmoid function. It retrieves the value of \(z\) without limiting it to a 0–1 scale.
 
-Logit Function: The inverse of the sigmoid function, used to retrieve the original z value before it was converted into a 0–1 probability scale.
+- **Softmax Function**: Extends the sigmoid function for multi-class classification instead of binary classification. For a given class \(j\), the softmax function calculates:
+  \[
+  P(\text{class } j) = \frac{e^{z_j}}{\sum e^{z_i}}
+  \]
+  This ensures that the sum of probabilities across all classes is equal to 1.
 
-Softmax Function: A generalization of the sigmoid function for multi-class classification. For class j, it outputs a probability by taking the exponential of z_j and dividing it by the sum of exponentials of all z_i values.
+---
 
-Softmax for class j: P(class j) = e^(z_j) / (Σ e^(z_i))
+## 3. Activation Functions
 
-This ensures that the probabilities of all classes sum up to 1.
+Activation functions are applied to the output of a neuron to introduce non-linearity, enabling the model to learn complex patterns and relationships in the data. Without activation functions, a neural network would behave like a linear model and fail to capture intricate structures such as those required in image processing or natural language tasks.
 
-3. Activation Functions
-Activation functions introduce non-linearity into a neural network, allowing it to learn complex patterns. Without activation functions, a neural network would behave like a linear model, limiting its ability to capture complex relationships in data.
+### Types of Activation Functions:
 
-Types of Activation Functions
-ReLU (Rectified Linear Unit):
+- **ReLU (Rectified Linear Unit)**:
+  \[
+  \text{ReLU}(z) = \max(0, z)
+  \]
+  It sets negative values to 0 (deactivating unimportant features) while keeping positive values unchanged. However, ReLU may cause the "dead neuron problem," where neurons producing negative \(z\) values consistently stop learning.
 
-ReLU(z) = max(0, z)
+- **Tanh (Hyperbolic Tangent)**:
+  \[
+  \text{tanh}(z) = \frac{e^z - e^{-z}}{e^z + e^{-z}}
+  \]
+  The output of Tanh is bounded between \(-1\) and \(1\), making it more suitable for balanced data compared to ReLU. However, it suffers from the vanishing gradient problem, where gradients diminish as \(z\) becomes very large or very small.
 
-This function sets negative values to 0 and keeps positive values as they are. However, it can cause the "dead neuron problem" if neurons consistently produce negative values.
+- **Leaky ReLU**:
+  \[
+  \text{Leaky ReLU}(z) = 
+  \begin{cases} 
+  z, & \text{if } z \geq 0 \\ 
+  \alpha z, & \text{if } z < 0
+  \end{cases}
+  \]
+  Unlike standard ReLU, Leaky ReLU allows a small, non-zero gradient for negative \(z\) values, solving the "dead neuron problem."
 
-Tanh (Hyperbolic Tangent):
-
-tanh(z) = (e^z - e^(-z)) / (e^z + e^(-z))
-
-Output is between -1 and 1. This function can handle balanced data more effectively than ReLU, but it still suffers from the vanishing gradient problem if z becomes very large or very small.
-
-Leaky ReLU:
-
-Leaky ReLU(z) = z if z ≥ 0, or α*z if z < 0 (where α is a small positive constant, like 0.01)
-This variation of ReLU allows a small gradient to flow for negative values of z, preventing neurons from dying out completely.
-
+Activation functions are critical for transforming the network's outputs at each layer, ensuring that the model can handle complex data distributions effectively.
 ---
 
 ## 4. Convex Functions and Optimization
