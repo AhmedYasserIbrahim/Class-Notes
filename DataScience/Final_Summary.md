@@ -311,3 +311,41 @@ Logistic regression also uses accuracy, precision, recall, F1, and ROC-AUC for e
 
 **Use cases:** Medicine (predict diseases), finance (detect fraud), cybersecurity (spam detection).
 
+---
+
+## 14. Scalers
+
+# Min-Max Scaler
+- **Definition:** Transforms data by scaling features to a specific range, usually [0, 1].
+- **Formula:**  
+  \( X' = \frac{X - X_{min}}{X_{max} - X_{min}} \)
+- **Use Case:** Best for data where the distribution is not Gaussian and when you want to keep the data within a bounded range.
+- **Pros:**
+  - Preserves the shape of the original distribution.
+  - Keeps data within a fixed range, useful for algorithms sensitive to magnitude differences.
+- **Cons:**
+  - Sensitive to outliers as they affect the minimum and maximum values.
+
+# Standard Scaler
+- **Definition:** Standardizes features by removing the mean and scaling to unit variance (z-score normalization).
+- **Formula:**  
+  \( X' = \frac{X - \mu}{\sigma} \)
+- **Use Case:** Best for data with a Gaussian distribution or when the algorithm assumes data is normally distributed.
+- **Pros:**
+  - Centers data around zero.
+  - Handles outliers better than Min-Max Scaler in many cases.
+- **Cons:**
+  - Does not bound the data to a specific range.
+  - Affected by outliers, but less sensitive than Min-Max Scaler.
+
+# Key Differences:
+| Aspect                  | Min-Max Scaler                 | Standard Scaler                |
+|------------------------|--------------------------------|--------------------------------|
+| **Range**             | [0, 1] (default)               | Centered around 0 with unit variance |
+| **Outlier Sensitivity**| High                          | Moderate                      |
+| **Data Assumption**   | No assumption on distribution | Assumes Gaussian distribution  |
+| **Use Case**          | Features with fixed ranges    | Features with normal distribution |
+
+# Conclusion:
+- **Use Min-Max Scaler** for bounded data where feature magnitude needs normalization.
+- **Use Standard Scaler** when data has a Gaussian distribution and zero mean is desired.
