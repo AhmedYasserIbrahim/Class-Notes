@@ -31,4 +31,4 @@ This project delivers a comprehensive machine-learning pipeline and interactive 
 
 ## 🔗 Project Link
 
-[https://github.com/YourUsername/traffic-malware-detection](https://github.com/YourUsername/traffic-malware-detection)
+[https://github.com/YourUsername/traffic-malware-detection]([https://github.com/YourUsername/traffic-malware-detection](https://github.com/AhmedYasserIbrahim/Class-Notes/blob/main/Emerging_Topics/Project/Milestone_Project.ipynb))
